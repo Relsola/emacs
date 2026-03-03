@@ -2,6 +2,8 @@
 
 (global-set-key (kbd "C-x C-g") 'find-file-at-point)
 (global-set-key (kbd "C-c i m") 'imenu)
+(global-set-key (kbd "M-w") 'kill-region)
+(global-set-key (kbd "C-w") 'kill-ring-save)
 
 (setq-default inhibit-splash-screen t
               make-backup-files nil
