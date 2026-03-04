@@ -88,13 +88,6 @@
 (require 'init-dev)
 (require 'init-opt)
 
-(add-hook 'c-mode-hook #'eglot-ensure)
-(add-hook 'c++-mode-hook #'eglot-ensure)
-
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '((c-mode c++-mode)
-                 . ("clangd"
-                    "--header-insertion=never"))))
+(require 'cc-dev)
 
 (load-file custom-file)
