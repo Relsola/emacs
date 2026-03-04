@@ -16,8 +16,8 @@
 (add-to-list 'default-frame-alist `(font . ,(rc/get-default-font)))
 
 (tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 (column-number-mode 1)
 (electric-pair-mode t)
 (global-auto-revert-mode t)
@@ -27,6 +27,18 @@
 (add-hook 'prog-mode-hook #'show-paren-mode)
 
 (rc/require-theme 'atom-one-dark)
+
+; Stop Emacs from losing undo information by
+; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
+
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "midnight blue")
+
+(setq compilation-directory-locked nil)
+(setq shift-select-mode nil)
+(setq enable-local-variables nil)
 
 ;;; ido
 (rc/require 'smex 'ido-completing-read+)
