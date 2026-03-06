@@ -22,6 +22,7 @@
 (electric-pair-mode t)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
+(editorconfig-mode 1)
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'prog-mode-hook #'show-paren-mode)
@@ -85,9 +86,44 @@
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 
+;;; helm
+(rc/require 'helm 'helm-git-grep 'helm-ls-git)
+
+(setq helm-ff-transformer-show-only-basename nil)
+
+(global-set-key (kbd "C-c h t") 'helm-cmd-t)
+(global-set-key (kbd "C-c h g g") 'helm-git-grep)
+(global-set-key (kbd "C-c h g l") 'helm-ls-git-ls)
+(global-set-key (kbd "C-c h f") 'helm-find)
+(global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
+(global-set-key (kbd "C-c h r") 'helm-recentf)
+
+;;; rg
+(rc/require 'rg 'wgrep)
+(require 'rg)
+(rg-enable-default-bindings)
+
+;;; powershell
+(rc/require 'powershell)
+(add-to-list 'auto-mode-alist '("\\.ps1\\'" . powershell-mode))
+(add-to-list 'auto-mode-alist '("\\.psm1\\'" . powershell-mode))
+
+;;; word-wrap
+(defun rc/enable-word-wrap ()
+  (interactive)
+  (toggle-word-wrap 1))
+
+(add-hook 'markdown-mode-hook 'rc/enable-word-wrap)
+
+;;; tramp
+;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
+(setq tramp-auto-save-directory "/tmp")
+
 (require 'init-dev)
 (require 'init-opt)
 
 (require 'cc-dev)
+
+(require 'markdown-mode)
 
 (load-file custom-file)

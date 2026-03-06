@@ -41,4 +41,8 @@
   (add-hook hook #'cc-eglot-format-before-save)
 	(add-hook hook #'cc-bind-key))
 
+(when (eq system-type 'windows-nt)
+	(setq shell-file-name "pwsh")
+	(setq shell-command-switch "-c"))
+
 (provide 'cc-dev)
