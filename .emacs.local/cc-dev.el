@@ -3,9 +3,10 @@
 ;;; ~/.emacs.d/tree-sitter/
 
 (dolist (pair '((c-mode . c-ts-mode)
-                (c++-mode . c++-ts-mode)
-                (c-or-c++-mode . c-or-c++-ts-mode)))
+                (c++-mode . c++-ts-mode)))
   (add-to-list 'major-mode-remap-alist pair))
+
+(setq treesit-font-lock-level 4)
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
